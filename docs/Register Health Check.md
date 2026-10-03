@@ -4,16 +4,16 @@ NEXOPS ONE · DORA register of information · Luxembourg
 
 The CSSF has warned that its checks now cover more data fields, so a register accepted in 2025 can be rejected in 2026. The 2027 filing (reference date 31 December 2026) will be checked at least as strictly.
 
-**6.5%**of registers analysed passed all 116 validation checks
+**~40%**of entities required to file a register had done so as of 16 March
 
-**86%**of the errors were missing mandatory information
+**31 March**filing deadline set by the CSSF in 2026
 
 ## Free for Venture Days contactsRegister Health Check
 
 Find out what will fail before the regulator does. No software to install and no commitment.
 
 1. **Send last year's register**The spreadsheet or the package you filed in 2026.
-2. **We run it through the validation checks**Starting with missing mandatory fields, the cause of most errors.
+2. **We run it through the validation checks**Starting with missing mandatory fields, so you can fix them before you file.
 3. **Get your report within 48 hours**Every finding, where it sits in the register, and how to fix it.
 
 Your file is handled under NDA and deleted once the report is delivered.
@@ -40,4 +40,4 @@ Book your Health Check \[Founder name\] · \[email\] · \[phone\] Finance-sector
 
 NEXOPS ONE
 
-Readiness aid, not legal advice or certification. Sources: CSSF, DORA register submission notice (February 2026); EY, DORA register of information quality checks (analysis of 947 registers).
+Readiness aid, not legal advice or certification. Sources: CSSF, DORA register submission notice (February 2026); EY, DORA register of information quality checks do not stop at submission (citing supervisory data).

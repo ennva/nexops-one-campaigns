@@ -23,11 +23,11 @@ On stage we claim only what the code does today; a jury with one compliance offi
 | Vendor trust | Ships its own DORA vendor due-diligence pack: register entry, exit plan, subprocessors | Handing the pack out as final — it and the licence are pending legal review |
 | NEXOPS ONE™ | Read-only connectors to Azure (Lighthouse) and AWS; design-partner demo | FinOps, sovereignty or AI copilot as products — these are scaffolds |
 
-**Statistics to use** (verify the EY figure's original source before it goes on a slide):
+**Statistics to use** (confirm the year of the EY figure before stating one):
 
 - The CSSF warned that 2026 checks apply to more data fields, so a register accepted in 2025 may be rejected in 2026.
-- EY reports that of 947 registers analysed, only 6.5% passed all 116 checks, and 86% of errors were missing mandatory information.
-- Drop the earlier "only 40% filed ahead of the deadline" figure: no source was found.
+- EY, citing supervisory data: as of 16 March, only around 40% of entities required to submit a register had done so; the CSSF urged the rest to submit as soon as possible to leave time to identify and remediate issues.
+- Do not use "6.5% of 947 registers passed all 116 checks" or "86% of errors were missing mandatory information": the EY article does not contain them.
 
 ## Positioning
 
@@ -58,7 +58,7 @@ One story in three lengths: the one-liner for the badge queue, 60 seconds for th
 
 **60 seconds.**
 
-> Every CSSF-supervised entity must file a DORA register of all its ICT providers every year. The checks are getting stricter: the CSSF itself warned that registers accepted in 2025 may be rejected in 2026. In one analysis, only 6.5% of registers passed every check, and most errors were simply missing mandatory data.
+> Every CSSF-supervised entity must file a DORA register of all its ICT providers every year. The checks are getting stricter: the CSSF itself warned that registers accepted in 2025 may be rejected in 2026. And close to the deadline, only around 40% of entities had filed; the CSSF had to urge the rest to submit early enough to fix their errors.
 >
 > Big entities throw consultants at it. A 15-person ManCo can't.
 >
@@ -72,7 +72,7 @@ One story in three lengths: the one-liner for the badge queue, 60 seconds for th
 
 **Deck (8 slides, 3–5 minutes).**([Example of Pitch to potencial Venture capital](./NEXOPS%20ONE™%20—%20Venture%20Days%20Pitch.pptx))
 
-1. Problem — the CSSF warning and the 6.5% statistic
+1. Problem — the CSSF warning and the ~40% filed as of 16 March
 2. Who hurts — small ManCos, AIFMs and PSFs without a DORA team
 3. Live demo (90 seconds) — import a register, see the gaps, export
 4. Why self-hosted open core wins in Luxembourg
@@ -91,7 +91,7 @@ The Register Health Check is the one piece of engineering before the event; lett
 
 - [ ] Confirm pitch slot, length and Q&A format with Luxinnovation; register on the event's matchmaking platform
 - [ ] List 40 named targets: LPEA and ALFI members, third-party ManCos, fund administrators, IT-outsourcing PSFs, past mission contacts
-- [ ] Health Check: implement the mandatory-field checks from the ESA validation rules workbook (86% of errors) and a one-page validation PDF
+- [ ] Health Check: implement the mandatory-field checks from the ESA validation rules workbook and a one-page validation PDF
 - [ ] Two or three non-binding letters of intent ("we will pilot for the 2027 filing")
 - [ ] Deck, one-pager with QR code, Health Check booking page
 - [ ] Rehearse with one compliance officer and one investor; drill the hard questions

@@ -56,6 +56,6 @@ Form submissions only work on Netlify; here the request fails and the page shows
 ## Before going live
 
 - Have the privacy notice (`privacy/`, `fr/confidentialite/`) reviewed once the legal entity exists.
-- Check the EY figures (6.5%, 86%, 947 registers, 116 checks) against the original source.
+- Confirm the year of EY's "around 40% had filed as of 16 March" figure before stating it anywhere; the page leaves the year out.
 - Have a native French speaker proofread `fr/`.
 - Point the QR code on the printed one-pager to `/` (English) or `/fr/`.
