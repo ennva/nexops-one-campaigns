@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnostic du registre DORA · NEXOPS ONE</title>
+<meta name="description" content="Identifiez ce qui, dans votre registre d’informations DORA, échouera aux contrôles de la CSSF avant le régulateur. Diagnostic gratuit pour les sociétés de gestion, GFIA et PSF luxembourgeois. Rapport sous 48 heures.">
+<meta property="og:title" content="Votre registre DORA passera-t-il les contrôles de la CSSF en mars 2027&nbsp;?">
+<meta property="og:description" content="Diagnostic gratuit du registre&nbsp;: envoyez le registre de l’an dernier, recevez chaque anomalie et sa correction sous 48 heures.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{SITE_URL}}/fr/">
+<meta property="og:image" content="{{SITE_URL}}/og-fr.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_GB">
+<link rel="preload" href="../assets/fonts/IBMPlexSans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/IBMPlexSans-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0e1a2e">
+<link rel="canonical" href="{{SITE_URL}}/fr/">
+<link rel="alternate" hreflang="en" href="{{SITE_URL}}/">
+<link rel="alternate" hreflang="fr" href="{{SITE_URL}}/fr/">
+<link rel="alternate" hreflang="x-default" href="{{SITE_URL}}/">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+
+<!-- Inline icon sprite (Lucide-style strokes) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="i-import" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M9 3h6l-1 8h-4L9 3ZM5 15h14v3H5zM7 21h10"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  </defs>
+</svg>
+
+<header class="site" id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Accueil NEXOPS ONE"><span class="brand-mark" aria-hidden="true"></span>NEXOPS ONE<sup>™</sup></a>
+    <nav aria-label="Navigation principale">
+      <ul class="nav-links">
+        <li><a href="#health-check">Diagnostic</a></li>
+        <li><a href="#engine">Le moteur</a></li>
+        <li><a href="#self-hosted">Auto-hébergé</a></li>
+        <li><a href="#offers">Offres 2027</a></li>
+        <li><a href="#cloud">Cloud</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a class="lang" href="../" hreflang="en" lang="en" data-lang-switch aria-label="English version">EN</a>
+      <a class="btn btn-primary" href="#book"><span>Réserver<span class="hide-sm"> un diagnostic</span></span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Registre d’informations DORA · Luxembourg</span>
+      <h1 id="hero-title">Votre registre DORA passera-t-il les contrôles de la CSSF en mars&nbsp;2027&nbsp;?</h1>
+      <p class="lead">La CSSF a averti que ses contrôles portent désormais sur davantage de champs&nbsp;: un registre accepté en 2025 peut être rejeté en 2026. Le dépôt de 2027 sera contrôlé au moins aussi strictement. Identifiez ce qui échouera avant le régulateur.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#book">Réserver mon diagnostic gratuit <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#health-check">Comment ça marche</a>
+      </div>
+      <ul class="assurance">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Rapport sous 48&nbsp;heures</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Sous accord de confidentialité</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Rien à installer, sans engagement</li>
+      </ul>
+    </div>
+
+    <figure class="report reveal" aria-label="Exemple illustratif d’un rapport de diagnostic du registre">
+      <div class="report-head">
+        <strong>Diagnostic du registre</strong>
+        <span class="tag">Exemple illustratif</span>
+      </div>
+      <div class="report-sum">
+        <div class="is-fail"><b>14</b><span>Champs obligatoires manquants</span></div>
+        <div class="is-gap"><b>6</b><span>Non évalués</span></div>
+        <div><b>48h</b><span>Délai</span></div>
+      </div>
+      <ul>
+        <li class="finding">
+          <code>B_05.01</code>
+          <p>Prestataire tiers de services TIC&nbsp;: code d’identification manquant</p>
+          <span class="chip fail">Échec</span>
+          <small>3 prestataires concernés · correction&nbsp;: ajouter le LEI ou un autre code enregistré</small>
+        </li>
+        <li class="finding">
+          <code>B_02.01</code>
+          <p>Accord contractuel&nbsp;: champ obligatoire non renseigné</p>
+          <span class="chip fail">Échec</span>
+          <small>7 lignes concernées · emplacement et correction indiqués pour chaque ligne</small>
+        </li>
+        <li class="finding">
+          <code>B_06.01</code>
+          <p>Fonction soutenue&nbsp;: données non fournies</p>
+          <span class="chip gap">Non évalué</span>
+          <small>Une donnée manquante n’est jamais comptée comme conforme</small>
+        </li>
+        <li class="finding">
+          <code>B_01.01</code>
+          <p>Entité tenant le registre</p>
+          <span class="chip pass">Complet</span>
+        </li>
+      </ul>
+      <figcaption class="report-foot">Mise en page indicative. Votre rapport liste chaque anomalie, son emplacement dans le registre et la manière de la corriger.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof" aria-labelledby="proof-title">
+  <div class="wrap">
+    <div class="proof-top">
+      <div>
+        <span class="eyebrow">Pourquoi maintenant</span>
+        <h2 id="proof-title" style="margin-top:14px">La plupart des registres échouent à au moins un contrôle. La plupart des erreurs sont de simples données manquantes.</h2>
+      </div>
+      <p>Les contrôles se durcissent chaque année. Les grandes entités mobilisent des consultants. Une société de gestion de 15&nbsp;personnes, rarement.</p>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><b><em>6,5</em>&nbsp;%</b><p>des registres analysés ont passé les 116&nbsp;contrôles de validation</p></div>
+      <div class="stat reveal"><b><em>86</em>&nbsp;%</b><p>des erreurs concernaient des informations obligatoires manquantes</p></div>
+      <div class="stat reveal"><b>947</b><p>registres analysés</p></div>
+      <div class="stat reveal"><b>31.12<span style="font-size:.5em">.26</span></b><p>date de référence du dépôt de 2027</p></div>
+    </div>
+    <p class="source">Sources&nbsp;: CSSF, communication sur la remise du registre DORA (février 2026)&nbsp;; EY, <a href="https://www.ey.com/en_lu/insights/financial-services/dora-register-of-information-quality-checks-do-not-stop-at-submission" rel="noopener" hreflang="en">contrôles qualité du registre d’informations DORA</a> (analyse de 947&nbsp;registres, en anglais).</p>
+  </div>
+</section>
+
+<!-- HEALTH CHECK -->
+<section id="health-check" aria-labelledby="hc-title">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Diagnostic gratuit du registre</span>
+      <h2 id="hc-title">Trois étapes. Un rapport. Aucun logiciel à installer.</h2>
+      <p class="lead">Gratuit pour les 20&nbsp;premières entités, dont toutes celles rencontrées aux Luxembourg Venture Days.</p>
+    </div>
+    <ol class="steps">
+      <li class="step reveal">
+        <h3>Envoyez le registre de l’an dernier</h3>
+        <p>Le tableur ou le dossier déposé en 2026. Nous vous transmettons un lien de dépôt sécurisé une fois l’accord de confidentialité signé.</p>
+      </li>
+      <li class="step reveal">
+        <h3>Nous le passons aux contrôles de validation</h3>
+        <p>En commençant par les champs obligatoires manquants, à l’origine de la plupart des erreurs.</p>
+      </li>
+      <li class="step reveal">
+        <h3>Recevez votre rapport sous 48&nbsp;heures</h3>
+        <p>Chaque anomalie, son emplacement dans le registre et la manière de la corriger.</p>
+      </li>
+    </ol>
+    <div class="step-meta">
+      <p><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg>Votre fichier est traité sous accord de confidentialité et supprimé dès la remise du rapport.</p>
+      <a class="btn btn-primary" href="#book">Réserver mon diagnostic</a>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINE -->
+<section id="engine" class="tinted" aria-labelledby="engine-title">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow">Le moteur de conformité</span>
+      <h2 id="engine-title" style="margin:16px 0">Puis gardez-le exact toute l’année.</h2>
+      <p class="lead">Le registre n’est pas un dépôt ponctuel. Les prestataires changent, les contrats sont renouvelés et les règles se durcissent chaque année. Le moteur de conformité tient le registre à jour entre deux dépôts.</p>
+      <div class="status-legend" aria-label="Statuts utilisés par le moteur">
+        <span class="chip pass">Complet</span>
+        <span class="chip fail">Échoue à un contrôle</span>
+        <span class="chip gap">Non évalué</span>
+      </div>
+      <ul class="checklist">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Évaluation selon DORA, avec les référentiels RGPD et AI Act européen</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Chiffrement au repos et accès par rôles</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Multi-entités&nbsp;: gérez plusieurs fonds ou clients depuis une seule installation</li>
+      </ul>
+    </div>
+    <ul class="features">
+      <li class="feature reveal">
+        <span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-import"/></svg></span>
+        <div><h3>Importez, ne ressaisissez pas</h3><p>Partez du tableur de registre que vous avez déjà. Aucune ressaisie, aucune migration à partir d’une page blanche.</p></div>
+      </li>
+      <li class="feature reveal">
+        <span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span>
+        <div><h3>Voyez chaque lacune</h3><p>Une donnée manquante apparaît comme «&nbsp;non évaluée&nbsp;», jamais comme conforme. Vous voyez votre couverture réelle, pas un score flatteur.</p></div>
+      </li>
+      <li class="feature reveal">
+        <span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-stamp"/></svg></span>
+        <div><h3>Prouvez-le</h3><p>Preuves, revue et approbation, avec un journal d’audit complet et un rapport de préparation en PDF pour votre conseil et vos auditeurs.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- SELF-HOSTED -->
+<section id="self-hosted" aria-labelledby="sh-title">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Sans ajouter de nouveau tiers</span>
+      <h2 id="sh-title">La plupart des outils de conformité finissent dans le registre qu’ils vous aident à constituer.</h2>
+    </div>
+    <blockquote class="quote reveal">L’outil DORA qui ne crée pas un nouveau problème DORA.</blockquote>
+
+    <div class="table-scroll reveal">
+      <table class="compare">
+        <caption class="sr-only">Logiciel de conformité hébergé comparé au moteur de conformité auto-hébergé</caption>
+        <thead>
+          <tr><th scope="col">&nbsp;</th><th scope="col">Outil de conformité hébergé type</th><th scope="col" class="us">Moteur de conformité NEXOPS</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Où se trouve votre registre</th>
+            <td data-label="Outil hébergé type">Dans le cloud de l’éditeur</td>
+            <td data-label="Moteur de conformité NEXOPS" class="us"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Dans votre propre environnement (chart Helm pour Kubernetes)</td>
+          </tr>
+          <tr>
+            <th scope="row">Votre registre DORA</th>
+            <td data-label="Outil hébergé type">Un prestataire tiers TIC de plus à déclarer et à évaluer</td>
+            <td data-label="Moteur de conformité NEXOPS" class="us"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Fourni avec sa propre entrée de registre et son dossier de due diligence fournisseur</td>
+          </tr>
+          <tr>
+            <th scope="row">Sortie</th>
+            <td data-label="Outil hébergé type">Propriétaire, à négocier</td>
+            <td data-label="Moteur de conformité NEXOPS" class="us"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cœur open source (Apache-2.0) et plan de sortie documenté</td>
+          </tr>
+          <tr>
+            <th scope="row">Coût</th>
+            <td data-label="Outil hébergé type">Jours de conseil ou licence GRC d’entreprise</td>
+            <td data-label="Moteur de conformité NEXOPS" class="us"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Prix forfaitaire, convenu à l’avance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust reveal">
+        <svg class="icon" aria-hidden="true"><use href="#i-server"/></svg>
+        <h3>Fonctionne dans votre environnement</h3>
+        <p>Les données de votre registre restent chez vous. Une démonstration entièrement hors ligne tourne sur un ordinateur portable, sans connexion réseau.</p>
+      </div>
+      <div class="trust reveal">
+        <svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>
+        <h3>Cœur open source</h3>
+        <p>Sous licence Apache-2.0. Votre équipe IT peut lire le code et vous n’êtes jamais captif.</p>
+      </div>
+      <div class="trust reveal">
+        <svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>
+        <h3>Sa propre entrée de registre</h3>
+        <p>Un dossier de due diligence fournisseur pour votre dossier DORA&nbsp;: entrée de registre, plan de sortie et sous-traitants. Disponible sur demande.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="tinted" aria-labelledby="aud-title" style="padding:72px 0">
+  <div class="wrap">
+    <div class="head" style="margin-bottom:32px">
+      <span class="eyebrow">Conçu pour</span>
+      <h2 id="aud-title">Les entités régulées sans équipe DORA dédiée</h2>
+    </div>
+    <ul class="audience">
+      <li class="reveal"><b>Sociétés de gestion</b><span>Sociétés de gestion OPCVM et ManCos tierces gérant plusieurs fonds</span></li>
+      <li class="reveal"><b>GFIA et GP</b><span>Gestionnaires de private equity, d’immobilier et de fonds alternatifs</span></li>
+      <li class="reveal"><b>PSF de taille moyenne</b><span>PSF de support et prestataires d’externalisation IT dans le périmètre DORA</span></li>
+      <li class="reveal"><b>Administrateurs et conseils</b><span>Une seule installation multi-entités pour tous les clients dont vous assurez le dépôt</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section id="offers" aria-labelledby="offers-title">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Saison de dépôt 2027</span>
+      <h2 id="offers-title">Commencez gratuitement. Déposez sereinement. Restez à jour.</h2>
+      <p class="lead">Chaque mission est chiffrée à l’avance. Pas de tarif journalier, pas de surprise en cas de nouvelle remise.</p>
+    </div>
+    <div class="offers">
+      <article class="offer featured reveal">
+        <span class="tag">Pour commencer</span>
+        <h3>Diagnostic du registre</h3>
+        <p class="price">Gratuit · 20 premières entités</p>
+        <ul>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Rapport de validation de votre registre actuel</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Chaque anomalie localisée, avec sa correction</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Remis sous 48&nbsp;heures</li>
+        </ul>
+        <a class="btn btn-primary" href="#book">Réserver</a>
+      </article>
+      <article class="offer reveal">
+        <span class="tag">Pour mars 2027</span>
+        <h3>Saison de dépôt 2027</h3>
+        <p class="price">Forfait convenu à l’avance</p>
+        <ul>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Reprise du registre de l’an dernier</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Validation et dossier de dépôt</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Accompagnement en cas de nouvelle remise</li>
+        </ul>
+        <a class="btn btn-ghost" href="#book" data-interest="filing-season">En savoir plus</a>
+      </article>
+      <article class="offer reveal">
+        <span class="tag">Toute l’année</span>
+        <h3>Abonnement annuel</h3>
+        <p class="price">Par entité et par an</p>
+        <ul>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Référentiels de règles maintenus au fil des évolutions</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Export du registre, SSO et workflow avancé</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Fonctionne dans votre environnement</li>
+        </ul>
+        <a class="btn btn-ghost" href="#book" data-interest="subscription">En savoir plus</a>
+      </article>
+      <article class="offer reveal">
+        <span class="tag">Partenaires</span>
+        <h3>Licence partenaire</h3>
+        <p class="price">Pour ManCos et cabinets de conseil</p>
+        <ul>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Une installation multi-tenant, de nombreuses entités</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Données séparées par client</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Tarif par entité</li>
+        </ul>
+        <a class="btn btn-ghost" href="#book" data-interest="channel">Devenir partenaire</a>
+      </article>
+    </div>
+
+    <div class="countdown reveal" role="note">
+      <svg class="icon" aria-hidden="true" style="width:32px;height:32px;color:var(--mint)"><use href="#i-calendar"/></svg>
+      <b><span id="days">—</span> jours</b>
+      <p>jusqu’au <strong>31 mars 2027</strong>, si la CSSF reprend le calendrier de 2026 (ouverture d’eDesk le 11&nbsp;février, échéance le 31&nbsp;mars). La fenêtre de 2027 n’est pas encore publiée. Cinq mois, c’est un cycle de décision pour la plupart des conseils d’administration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEXOPS ONE -->
+<section id="cloud" class="next" aria-labelledby="cloud-title">
+  <div class="wrap next-grid">
+    <div class="reveal">
+      <span class="eyebrow">Après le registre</span>
+      <h2 id="cloud-title" style="margin:16px 0">Votre registre montre de quoi vous dépendez. NEXOPS&nbsp;ONE montre ce que cela implique.</h2>
+      <p class="lead">Une fois vos prestataires cartographiés, votre conseil et le régulateur posent les questions suivantes&nbsp;: à quel point dépendons-nous d’un seul cloud, et que faudrait-il pour en sortir&nbsp;?</p>
+      <ul class="qs">
+        <li><span>Coût</span><p>Ce que chaque dépendance critique vous coûte réellement.</p></li>
+        <li><span>Concentration</span><p>La part de vos activités qui repose sur un seul prestataire.</p></li>
+        <li><span>Sortie</span><p>Ce qu’une sortie ou une migration demanderait concrètement.</p></li>
+      </ul>
+      <p class="note">NEXOPS ONE™ se connecte en lecture seule à Azure (via Lighthouse) et à AWS. Nous ouvrons pour 2027 un programme de partenaires de conception, réservé à quelques clients du moteur de conformité.</p>
+      <div class="cta-row" style="margin-top:24px">
+        <a class="btn btn-ghost" href="#book" data-interest="design-partner">Devenir partenaire de conception</a>
+      </div>
+    </div>
+
+    <figure class="diagram reveal">
+      <svg viewBox="0 0 440 320" role="img" aria-labelledby="dg-t dg-d">
+        <title id="dg-t">Du registre à l’intelligence cloud</title>
+        <desc id="dg-d">Le registre DORA liste les prestataires TIC et les fonctions. NEXOPS ONE se connecte en lecture seule à Azure et AWS pour indiquer le coût, la concentration et l’effort de sortie de chaque dépendance.</desc>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="13">
+          <rect x="16" y="24" width="150" height="272" rx="10" fill="#0e1a2e" stroke="#2a3a56"/>
+          <text x="32" y="52" fill="#00d693" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.2">REGISTRE DORA</text>
+          <g fill="#e9eef6">
+            <rect x="32" y="70"  width="118" height="38" rx="6" fill="#15243d" stroke="#2a3a56"/><text x="44" y="94">Fournisseur cloud A</text>
+            <rect x="32" y="118" width="118" height="38" rx="6" fill="#15243d" stroke="#2a3a56"/><text x="44" y="142">Fournisseur cloud B</text>
+            <rect x="32" y="166" width="118" height="38" rx="6" fill="#15243d" stroke="#2a3a56"/><text x="44" y="190">SaaS admin. fonds</text>
+            <rect x="32" y="214" width="118" height="38" rx="6" fill="#15243d" stroke="#2a3a56"/><text x="44" y="238">Données de marché</text>
+          </g>
+          <g stroke="#1d5ac8" stroke-width="1.5" fill="none">
+            <path d="M150 89 C 205 89, 205 130, 262 130"/>
+            <path d="M150 137 C 205 137, 205 160, 262 160"/>
+            <path d="M150 185 C 205 185, 205 190, 262 190" stroke-dasharray="4 4" stroke="#a7b3c6"/>
+          </g>
+          <rect x="262" y="88" width="162" height="144" rx="10" fill="#15243d" stroke="#1d5ac8" stroke-width="1.5"/>
+          <circle cx="282" cy="112" r="7" fill="#1d5ac8"/><circle cx="282" cy="112" r="3" fill="none" stroke="#fff" stroke-width="1.5"/>
+          <text x="296" y="117" fill="#fff" font-weight="600">NEXOPS ONE™</text>
+          <g font-family="IBM Plex Mono, monospace" font-size="11">
+            <text x="280" y="150" fill="#a7b3c6">COÛT</text>
+            <rect x="358" y="141" width="50" height="8" rx="4" fill="#2a3a56"/><rect x="358" y="141" width="34" height="8" rx="4" fill="#00d693"/>
+            <text x="280" y="178" fill="#a7b3c6">CONCENTR.</text>
+            <rect x="358" y="169" width="50" height="8" rx="4" fill="#2a3a56"/><rect x="358" y="169" width="44" height="8" rx="4" fill="#ffb400"/>
+            <text x="280" y="206" fill="#a7b3c6">SORTIE</text>
+            <rect x="358" y="197" width="50" height="8" rx="4" fill="#2a3a56"/><rect x="358" y="197" width="22" height="8" rx="4" fill="#5b8ff0"/>
+          </g>
+          <text x="262" y="262" fill="#a7b3c6" font-size="12">Lecture seule · Azure Lighthouse · AWS</text>
+        </g>
+      </svg>
+      <figcaption>Illustratif. Pas de données client réelles.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book" aria-labelledby="book-title">
+  <div class="wrap book-grid">
+    <div class="reveal">
+      <span class="eyebrow">Réservez votre diagnostic</span>
+      <h2 id="book-title" style="margin:16px 0">Votre registre est-il passé sans encombre en mars&nbsp;?</h2>
+      <p class="lead">Présentez-nous brièvement votre entité. Nous confirmons sous un jour ouvré et vous envoyons l’accord de confidentialité et un lien de dépôt sécurisé.</p>
+      <div class="founder">
+        <div class="founder-id">
+          <span class="avatar" aria-hidden="true">{{FOUNDER_INITIALS}}</span>
+          <div>
+            <b>{{FOUNDER_NAME}}</b>
+            <span>Fondateur, NEXOPS ONE</span>
+          </div>
+        </div>
+        <p>Missions IT dans le secteur financier et infrastructures multi-cloud. Je connais à la fois le registre réglementaire et l’architecture cloud qui se cache derrière.</p>
+        <ul class="contact">
+          <li><a href="mailto:{{CONTACT_EMAIL}}"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>{{CONTACT_EMAIL}}</a></li>
+          <li><a href="tel:{{CONTACT_PHONE_E164}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>{{CONTACT_PHONE}}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Netlify Forms (form name "health-check"). The double-brace tokens on this page are filled by scripts/build.mjs; view the built site, not this file. -->
+    <form class="card reveal" id="book-form" name="health-check" method="POST" action="/fr/merci/" data-netlify="true" netlify-honeypot="bot-field" novalidate data-mailto="{{CONTACT_EMAIL}}">
+      <input type="hidden" name="form-name" value="health-check">
+      <input type="hidden" name="language" value="fr">
+      <p class="sr-only" aria-hidden="true"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="fields">
+        <div class="field">
+          <label for="f-name">Nom complet</label>
+          <input id="f-name" name="name" autocomplete="name" required aria-describedby="e-name">
+          <span class="err" id="e-name" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail professionnel</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="e-email">
+          <span class="err" id="e-email" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-org">Nom de l’entité</label>
+          <input id="f-org" name="organisation" autocomplete="organization" required aria-describedby="e-org">
+          <span class="err" id="e-org" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-type">Type d’entité</label>
+          <select id="f-type" name="entity_type" required aria-describedby="e-type">
+            <option value="">Choisir…</option>
+            <option value="UCITS management company">Société de gestion OPCVM</option>
+            <option value="Third-party ManCo">ManCo tierce</option>
+            <option value="AIFM / GP">GFIA / GP</option>
+            <option value="PSF">PSF</option>
+            <option value="Fund administrator">Administrateur de fonds</option>
+            <option value="Consultancy / advisor">Cabinet de conseil</option>
+            <option value="Other">Autre</option>
+          </select>
+          <span class="err" id="e-type" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-providers">Prestataires TIC dans le registre <span class="opt">(facultatif)</span></label>
+          <select id="f-providers" name="ict_providers">
+            <option value="">Choisir…</option>
+            <option value="Fewer than 20">Moins de 20</option>
+            <option value="20–50">20 à 50</option>
+            <option value="51–150">51 à 150</option>
+            <option value="More than 150">Plus de 150</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-filed">Qui a déposé en 2026&nbsp;? <span class="opt">(facultatif)</span></label>
+          <select id="f-filed" name="filed_by">
+            <option value="">Choisir…</option>
+            <option value="In-house">En interne</option>
+            <option value="External consultant">Consultant externe</option>
+            <option value="Group / parent entity">Groupe / maison mère</option>
+            <option value="Not filed yet">Pas encore déposé</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="f-interest">Je suis intéressé(e) par</label>
+          <select id="f-interest" name="interest">
+            <option value="health-check">Diagnostic du registre</option>
+            <option value="filing-season">Saison de dépôt 2027</option>
+            <option value="subscription">Abonnement annuel</option>
+            <option value="channel">Licence partenaire</option>
+            <option value="design-partner">Partenaire de conception NEXOPS ONE</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="f-msg">Autre chose à nous signaler&nbsp;? <span class="opt">(facultatif)</span></label>
+          <textarea id="f-msg" name="message" aria-describedby="h-msg"></textarea>
+          <span class="help" id="h-msg">Par exemple&nbsp;: registre rejeté ou redéposé en 2026, inquiétudes sur l’échéance.</span>
+        </div>
+        <div class="field full">
+          <label class="consent"><input type="checkbox" name="consent" id="f-consent" required aria-describedby="e-consent"> J’accepte d’être contacté(e) au sujet de cette demande, dans les conditions de la <a href="confidentialite/">politique de confidentialité</a>. Merci de ne pas joindre votre registre ici&nbsp;: nous vous enverrons un lien sécurisé après l’accord de confidentialité.</label>
+          <span class="err" id="e-consent" role="alert"></span>
+        </div>
+      </div>
+      <div class="form-foot">
+        <span class="help">Gratuit · sans engagement · rapport sous 48&nbsp;h</span>
+        <button class="btn btn-primary" type="submit">Réserver mon diagnostic <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="tinted" aria-labelledby="faq-title">
+  <div class="wrap">
+    <div class="head" style="margin-bottom:28px">
+      <span class="eyebrow">Questions</span>
+      <h2 id="faq-title">Ce que nous demandent les responsables conformité</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Qui est responsable si la CSSF rejette un dépôt&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <p>L’entité effectue le dépôt et reste responsable de son registre. Le diagnostic et le moteur de conformité sont des outils d’aide à la préparation et à la validation, ni un conseil juridique ni une certification. Notre rôle est de détecter les erreurs avant le régulateur.</p>
+      </details>
+      <details>
+        <summary>Que vérifie exactement le diagnostic&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <p>Nous commençons par les contrôles de champs obligatoires issus des règles de validation des AES, car les informations obligatoires manquantes représentaient 86&nbsp;% des erreurs dans l’analyse d’EY. Le rapport indique chaque anomalie, son emplacement dans votre registre et la manière de la corriger.</p>
+      </details>
+      <details>
+        <summary>Les données de notre registre quittent-elles notre environnement&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <p>Pour le diagnostic, vous nous transmettez une copie sous accord de confidentialité via un lien sécurisé, et nous la supprimons dès la remise du rapport. Le moteur de conformité, lui, fonctionne dans votre propre environnement&nbsp;: au quotidien, votre registre reste chez vous.</p>
+      </details>
+      <details>
+        <summary>Est-ce un SaaS&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <p>Non. Le moteur de conformité est auto-hébergé. Il s’installe dans votre infrastructure avec un chart Helm, et son cœur est open source sous licence Apache-2.0. C’est tout l’intérêt&nbsp;: il ne devient pas un prestataire tiers TIC de plus à déclarer et à évaluer.</p>
+      </details>
+      <details>
+        <summary>Nous travaillons avec un consultant ou un Big&nbsp;4. Pourquoi changer&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <p>Rien ne vous y oblige. Beaucoup de conseils sont débordés par leurs petits clients, et notre licence partenaire permet à une ManCo, un administrateur de fonds ou un cabinet de gérer de nombreuses entités depuis une seule installation. Un logiciel centré sur la validation rend chaque dépôt moins coûteux à préparer et plus facile à justifier.</p>
+      </details>
+      <details>
+        <summary>Et après mars 2027&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <p>Le registre doit rester exact toute l’année, et les règles de validation changent chaque année. L’abonnement annuel maintient les référentiels de règles à jour. Une fois vos dépendances cartographiées, NEXOPS ONE™ ajoute l’analyse des coûts, de la concentration et de la sortie pour vos fournisseurs cloud.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>NEXOPS ONE<sup>™</sup></a>
+        <p>Outils auto-hébergés de registre et de préparation DORA pour les gestionnaires de fonds et entités régulées au Luxembourg.</p>
+        <p style="margin-top:14px">Aide à la préparation, ni conseil juridique ni certification.</p>
+      </div>
+      <div>
+        <h3>Sources</h3>
+        <ol>
+          <li><a href="https://www.cssf.lu/en/2026/02/dora-submission-timeframe-for-register-of-information-edesk-portal-open-as-of-11-february-2026/" rel="noopener" hreflang="en">CSSF, calendrier de remise du registre d’informations DORA (février 2026, en anglais)</a></li>
+          <li><a href="https://www.ey.com/en_lu/insights/financial-services/dora-register-of-information-quality-checks-do-not-stop-at-submission" rel="noopener" hreflang="en">EY, les contrôles qualité du registre d’informations DORA ne s’arrêtent pas au dépôt (en anglais)</a></li>
+          <li><a href="https://www.cssf.lu/wp-content/uploads/Guidance-for-interpretation-and-resolution-of-CSSF-error-messages-related-to-the-submission-of-the-DORA-register.pdf" rel="noopener" hreflang="en">CSSF, guide d’interprétation des messages d’erreur du registre DORA (PDF, en anglais)</a></li>
+        </ol>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> NEXOPS ONE. NEXOPS ONE est une marque de son titulaire.</span>
+      <span>{{LEGAL_ENTITY}} · Luxembourg · <a href="confidentialite/">Politique de confidentialité</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta" id="mobile-cta"><a class="btn btn-primary" href="#book">Réserver un diagnostic gratuit</a></div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

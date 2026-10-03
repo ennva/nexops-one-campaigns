@@ -1,0 +1,23 @@
+# Run the landing site locally: docker compose up --build  ->  http://localhost:8300
+# Contact details come from .env (copy .env.example); empty values show placeholders.
+services:
+  web:
+    build:
+      context: .
+      args:
+        FOUNDER_NAME: ${FOUNDER_NAME:-}
+        CONTACT_EMAIL: ${CONTACT_EMAIL:-}
+        CONTACT_PHONE: ${CONTACT_PHONE:-}
+        LEGAL_ENTITY: ${LEGAL_ENTITY:-}
+        SITE_URL: ${SITE_URL:-http://localhost:${PORT:-8300}}
+    image: nexops-one-landing:local
+    # Contact details are baked in at build time, so rebuild on every `up`
+    # (cached, takes seconds) to pick up .env and landing/ changes.
+    pull_policy: build
+    ports:
+      - "127.0.0.1:${PORT:-8300}:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+    restart: unless-stopped
