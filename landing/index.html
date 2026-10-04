@@ -19,7 +19,7 @@
 <link rel="preload" href="assets/fonts/IBMPlexSans-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#0e1a2e">
+<meta name="theme-color" content="#101841">
 <link rel="canonical" href="{{SITE_URL}}/">
 <link rel="alternate" hreflang="en" href="{{SITE_URL}}/">
 <link rel="alternate" hreflang="fr" href="{{SITE_URL}}/fr/">
@@ -52,7 +52,7 @@
 
 <header class="site" id="top">
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="NEXOPS ONE home"><span class="brand-mark" aria-hidden="true"></span>NEXOPS ONE<sup>™</sup></a>
+    <a class="brand" href="#top" aria-label="NEXOPS ONE home"><svg class="brand-mark" aria-hidden="true"><use href="assets/brand.svg#mark"/></svg><svg class="brand-word" aria-hidden="true"><use href="assets/brand.svg#wordmark"/></svg></a>
     <nav aria-label="Main">
       <ul class="nav-links">
         <li><a href="#health-check">Health Check</a></li>
@@ -344,7 +344,7 @@
     </div>
 
     <div class="countdown reveal" role="note">
-      <svg class="icon" aria-hidden="true" style="width:32px;height:32px;color:var(--mint)"><use href="#i-calendar"/></svg>
+      <svg class="icon" aria-hidden="true" style="width:32px;height:32px;color:var(--cyan)"><use href="#i-calendar"/></svg>
       <b><span id="days">—</span> days</b>
       <p>until <strong>31 March 2027</strong>, if the CSSF keeps the 2026 timetable (eDesk opened 11 February, deadline 31 March). The 2027 window is not yet published. Five months is one sales cycle for most boards.</p>
     </div>
@@ -375,33 +375,33 @@
         <desc id="dg-d">The DORA register lists the ICT providers and functions. NEXOPS ONE connects read-only to Azure and AWS to show cost, concentration and exit effort for each dependency.</desc>
         <g font-family="IBM Plex Sans, sans-serif" font-size="13">
           <!-- register -->
-          <rect x="16" y="24" width="150" height="272" rx="10" fill="#0e1a2e" stroke="#2a3a56"/>
-          <text x="32" y="52" fill="#00d693" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.2">DORA REGISTER</text>
-          <g fill="#e9eef6">
-            <rect x="32" y="70"  width="118" height="38" rx="6" fill="#15243d" stroke="#2a3a56"/><text x="44" y="94">Cloud provider A</text>
-            <rect x="32" y="118" width="118" height="38" rx="6" fill="#15243d" stroke="#2a3a56"/><text x="44" y="142">Cloud provider B</text>
-            <rect x="32" y="166" width="118" height="38" rx="6" fill="#15243d" stroke="#2a3a56"/><text x="44" y="190">Fund admin SaaS</text>
-            <rect x="32" y="214" width="118" height="38" rx="6" fill="#15243d" stroke="#2a3a56"/><text x="44" y="238">Market data</text>
+          <rect x="16" y="24" width="150" height="272" rx="10" fill="#101841" stroke="#2c3768"/>
+          <text x="32" y="52" fill="#00d0fb" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.2">DORA REGISTER</text>
+          <g fill="#e8ecf6">
+            <rect x="32" y="70"  width="118" height="38" rx="6" fill="#19224f" stroke="#2c3768"/><text x="44" y="94">Cloud provider A</text>
+            <rect x="32" y="118" width="118" height="38" rx="6" fill="#19224f" stroke="#2c3768"/><text x="44" y="142">Cloud provider B</text>
+            <rect x="32" y="166" width="118" height="38" rx="6" fill="#19224f" stroke="#2c3768"/><text x="44" y="190">Fund admin SaaS</text>
+            <rect x="32" y="214" width="118" height="38" rx="6" fill="#19224f" stroke="#2c3768"/><text x="44" y="238">Market data</text>
           </g>
           <!-- links -->
-          <g stroke="#1d5ac8" stroke-width="1.5" fill="none">
+          <g stroke="#00abed" stroke-width="1.5" fill="none">
             <path d="M150 89 C 205 89, 205 130, 262 130"/>
             <path d="M150 137 C 205 137, 205 160, 262 160"/>
-            <path d="M150 185 C 205 185, 205 190, 262 190" stroke-dasharray="4 4" stroke="#a7b3c6"/>
+            <path d="M150 185 C 205 185, 205 190, 262 190" stroke-dasharray="4 4" stroke="#a9b3cf"/>
           </g>
           <!-- nexops -->
-          <rect x="262" y="88" width="162" height="144" rx="10" fill="#15243d" stroke="#1d5ac8" stroke-width="1.5"/>
-          <circle cx="282" cy="112" r="7" fill="#1d5ac8"/><circle cx="282" cy="112" r="3" fill="none" stroke="#fff" stroke-width="1.5"/>
+          <rect x="262" y="88" width="162" height="144" rx="10" fill="#19224f" stroke="#00abed" stroke-width="1.5"/>
+          <use href="assets/brand.svg#mark" x="274" y="103" width="16" height="18"/>
           <text x="296" y="117" fill="#fff" font-weight="600">NEXOPS ONE™</text>
           <g font-family="IBM Plex Mono, monospace" font-size="11">
-            <text x="280" y="150" fill="#a7b3c6">COST</text>
-            <rect x="358" y="141" width="50" height="8" rx="4" fill="#2a3a56"/><rect x="358" y="141" width="34" height="8" rx="4" fill="#00d693"/>
-            <text x="280" y="178" fill="#a7b3c6">CONCENTR.</text>
-            <rect x="358" y="169" width="50" height="8" rx="4" fill="#2a3a56"/><rect x="358" y="169" width="44" height="8" rx="4" fill="#ffb400"/>
-            <text x="280" y="206" fill="#a7b3c6">EXIT</text>
-            <rect x="358" y="197" width="50" height="8" rx="4" fill="#2a3a56"/><rect x="358" y="197" width="22" height="8" rx="4" fill="#5b8ff0"/>
+            <text x="280" y="150" fill="#a9b3cf">COST</text>
+            <rect x="358" y="141" width="50" height="8" rx="4" fill="#2c3768"/><rect x="358" y="141" width="34" height="8" rx="4" fill="#00d0fb"/>
+            <text x="280" y="178" fill="#a9b3cf">CONCENTR.</text>
+            <rect x="358" y="169" width="50" height="8" rx="4" fill="#2c3768"/><rect x="358" y="169" width="44" height="8" rx="4" fill="#ffb400"/>
+            <text x="280" y="206" fill="#a9b3cf">EXIT</text>
+            <rect x="358" y="197" width="50" height="8" rx="4" fill="#2c3768"/><rect x="358" y="197" width="22" height="8" rx="4" fill="#e8ecf6"/>
           </g>
-          <text x="262" y="262" fill="#a7b3c6" font-size="12">Read-only · Azure Lighthouse · AWS</text>
+          <text x="262" y="262" fill="#a9b3cf" font-size="12">Read-only · Azure Lighthouse · AWS</text>
         </g>
       </svg>
       <figcaption>Illustrative. Not live client data.</figcaption>
@@ -558,7 +558,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>NEXOPS ONE<sup>™</sup></a>
+        <a class="brand" href="#top" aria-label="NEXOPS ONE home"><svg class="brand-mark" aria-hidden="true"><use href="assets/brand.svg#mark"/></svg><svg class="brand-word" aria-hidden="true"><use href="assets/brand.svg#wordmark"/></svg></a>
         <p>Self-hosted DORA register and readiness tooling for Luxembourg fund managers and regulated entities.</p>
         <p style="margin-top:14px">Readiness aid, not legal advice or certification.</p>
       </div>
