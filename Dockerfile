@@ -8,6 +8,7 @@ ARG FOUNDER_NAME
 ARG CONTACT_EMAIL
 ARG CONTACT_PHONE
 ARG LEGAL_ENTITY
+ARG LEGAL_ENTITY_FR
 ARG SITE_URL=http://localhost:8080
 # "local" lets the build fall back to placeholders for any value left empty.
 ENV CONTEXT=local \
@@ -15,6 +16,7 @@ ENV CONTEXT=local \
     CONTACT_EMAIL=$CONTACT_EMAIL \
     CONTACT_PHONE=$CONTACT_PHONE \
     LEGAL_ENTITY=$LEGAL_ENTITY \
+    LEGAL_ENTITY_FR=$LEGAL_ENTITY_FR \
     SITE_URL=$SITE_URL
 RUN node scripts/build.mjs
 

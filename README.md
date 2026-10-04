@@ -26,6 +26,7 @@ docs/               strategy and campaign source documents
    | `CONTACT_EMAIL` | hello@nexops.one |
    | `CONTACT_PHONE` | +352 621 123 456 |
    | `LEGAL_ENTITY` | NEXOPS ONE S.à r.l. |
+   | `LEGAL_ENTITY_FR` (optional) | Defaults to `LEGAL_ENTITY` |
    | `SITE_URL` (optional) | https://nexops.one — defaults to the site's primary Netlify URL |
 
    A production deploy fails until the first four are set, so placeholders never go live. Deploy previews build with placeholders and are excluded from search engines by `robots.txt`.

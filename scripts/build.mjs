@@ -6,6 +6,7 @@
 //   CONTACT_EMAIL   e.g. "hello@nexops.one"
 //   CONTACT_PHONE   e.g. "+352 621 123 456"
 //   LEGAL_ENTITY    e.g. "NEXOPS ONE S.à r.l."
+//   LEGAL_ENTITY_FR optional; defaults to LEGAL_ENTITY
 //   SITE_URL        optional; defaults to Netlify's URL (the site's primary URL)
 // Netlify sets CONTEXT (production, deploy-preview, branch-deploy). A production build fails if a value is missing.
 
@@ -47,6 +48,7 @@ const tokens = {
   CONTACT_PHONE: phone,
   CONTACT_PHONE_E164: phone.replace(/[^\d+]/g, ""),
   LEGAL_ENTITY: value("LEGAL_ENTITY"),
+  LEGAL_ENTITY_FR: env.LEGAL_ENTITY_FR?.trim() || value("LEGAL_ENTITY"),
   BUILD_DATE: new Date().toISOString().slice(0, 10),
 };
 
